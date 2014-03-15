@@ -1,13 +1,25 @@
 #include "gtest/gtest.h"
 #include "might.hpp"
 
+#include <memory>
+
 using namespace might;
 
 TEST(MatcherEqualTest, NumericLiterals) {
-  ASSERT_TRUE(expect(5).should(equal(5)));
+  expect(5).should(equal(5));
+}
+
+TEST(MatcherBeNull, UniquePtr) {
+  auto i = std::make_unique<int>(1);
+  expect(i).should_not(be_null());
+  i.release();
+  expect(i).should(be_null());
 }
 
 TEST(MatcherHaveLength, Basic) {
   std::vector<int> a = {1, 2, 3};
-  ASSERT_TRUE(expect(a).should(have_length(3)));
+  expect(a).should(have_length(3));
 }
+
+
+
