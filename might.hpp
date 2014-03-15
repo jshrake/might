@@ -1,7 +1,8 @@
-#ifndef EXPECTATIONS_HPP_
-#define EXPECTATIONS_HPP_
+#ifndef MIGHT_EXPECTATIONS_HPP_
+#define MIGHT_EXPECTATIONS_HPP_
 
 #include "matcher.hpp"
+
 namespace might {
   template <class T>
   class Actual {
@@ -9,7 +10,7 @@ namespace might {
 
       template <class MatcherFunc>
       bool match(MatcherFunc const & matcher, const bool desire) const {
-        return desire != matcher(actual_);
+        return desire == matcher(actual_);
       }
 
     public:
